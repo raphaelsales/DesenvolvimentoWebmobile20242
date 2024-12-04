@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToProfile()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Filmes Para Lancar
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="movies && movies.length > 0">
+    <ion-item *ngFor="let movie of movies" button (click)="openMovieDetails(movie.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }} poster">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ movie.title }}</h2>
+        <p>Data de Lançamento: {{ movie.release_date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-card *ngIf="movies && movies.length == 0">
+    <ion-card-header>
+      <ion-card-title>Nenhum filme encontrado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Não há filmes disponíveis no momento. Tente novamente mais tarde.
+    </ion-card-content>
+  </ion-card>
+</ion-content>

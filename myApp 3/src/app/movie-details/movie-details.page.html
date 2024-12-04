@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToProfile()">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Detalhes do Filme
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="movie">
+  <ion-card>
+    <ion-img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }} poster"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ movie.title }}</ion-card-title>
+      <ion-card-subtitle>Data de Lançamento: {{ movie.release_date }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ movie.overview }}</p>
+      <div class="movie-details">
+        <ion-chip color="primary">
+          <ion-label><strong>Nota:</strong> {{ movie.vote_average }}</ion-label>
+        </ion-chip>
+        <ion-chip color="tertiary">
+          <ion-label><strong>Duração:</strong> {{ movie.runtime }} minutos</ion-label>
+        </ion-chip>
+        <ion-chip color="secondary" *ngFor="let genre of movie.genres">
+          <ion-label>{{ genre.name }}</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="success" (click)="addToWatchlist()">
+    Adicionar à Lista de Desejos
+  </ion-button>
+</ion-content>
+
+<style>
+  ion-card {
+    margin: 20px;
+  }
+  
+  ion-img {
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  ion-chip {
+    font-size: 14px;
+  }
+  </style>
+  

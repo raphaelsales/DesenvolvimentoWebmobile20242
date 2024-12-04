@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (submit)="onLogin($event)">
+    <ion-item>
+      <ion-label position="floating">Usuário</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario" name="usuario" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="senha" name="senha" required></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit">Entrar</ion-button>
+  </form>
+  <ion-button expand="block" color="light" routerLink="/register">Criar Conta</ion-button>
+</ion-content>
+<style>
+ion-item {
+  margin-bottom: 15px;
+}
+</style>
